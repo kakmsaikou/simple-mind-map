@@ -4,7 +4,7 @@ const CurlyBracket = ({ sideHeight = 50 }) => {
       <path
         fill='none'
         stroke='black'
-        strokeWidth='2px'
+        strokeWidth='1.5px'
         d={`
             M 13 1
             a 8 8 0 0 0 -8 8
