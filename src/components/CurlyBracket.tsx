@@ -1,10 +1,6 @@
 const CurlyBracket = ({ sideHeight = 50 }) => {
   return (
-    <svg
-      className='block ml-2'
-      width='13px'
-      height={`${sideHeight + 38}px`}
-    >
+    <svg className='block rotate-180' width='13px' height={`${sideHeight + 38}px`}>
       <path
         fill='none'
         stroke='black'
