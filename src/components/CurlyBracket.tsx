@@ -1,22 +1,22 @@
 const CurlyBracket = ({ sideHeight = 50 }) => {
   return (
     <svg
-      className='block border border-yellow-600'
-      width='50px'
-      height='100vh'
+      className='block ml-2'
+      width='13px'
+      height={`${sideHeight + 38}px`}
     >
       <path
         fill='none'
         stroke='black'
         strokeWidth='2px'
         d={`
-            M 45 10
-            a 20 20 0 0 0 -20 20                                            
-            v ${sideHeight/2}
-            a 10 15 0 0 1 -10 10                 
-            a 10 15 0 0 1 10 10                                                        
-            v ${sideHeight/2}
-            a 20 20 0 0 0 20 20                                 
+            M 13 1
+            a 8 8 0 0 0 -8 8
+            v ${sideHeight / 2}
+            a 5 10 0 0 1 -5 10
+            a 5 10 0 0 1 5 10
+            v ${sideHeight / 2}
+            a 8 8 0 0 0 8 8
           `}
       />
     </svg>
