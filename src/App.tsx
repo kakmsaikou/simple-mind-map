@@ -4,6 +4,8 @@ import CurlyBracket from './components/CurlyBracket';
 const App = () => {
   const [ulHeight, setUlHeight] = useState(0);
 
+  const itemList = ['动词普通形', 'い形容词普通形', 'な形容词干+な/名词(+助词)', '名词(+助词)+なんか'];
+
   const refUl = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
@@ -21,10 +23,11 @@ const App = () => {
           }}
           ref={refUl}
         >
-          <li>动词普通形</li>
-          <li>い形容词普通形</li>
-          <li>な形容词干+な/名词(+助词)</li>
-          <li>名词(+助词)+なんか</li>
+          {
+            itemList.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))
+          }
         </ul>
         <CurlyBracket sideHeight={ulHeight} />
         <div>＋なんて</div>
