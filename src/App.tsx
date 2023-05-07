@@ -2,36 +2,49 @@ import { useEffect, useRef, useState } from 'react';
 import CurlyBracket from './components/CurlyBracket';
 
 const App = () => {
-  const [ulHeight, setUlHeight] = useState(0);
+  const [childNodesHeight, setUlHeight] = useState(0);
 
-  const itemList = ['动词普通形', 'い形容词普通形', 'な形容词干+な/名词(+助词)', '名词(+助词)+なんか'];
+  const childNodeList = [
+    '动词普通形',
+    'い形容词普通形',
+    'な形容词干+な/名词(+助词)',
+    '名词(+助词)+なんか',
+  ];
 
-  const refUl = useRef<HTMLUListElement>(null);
+  const childNodes = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
-    setUlHeight(refUl.current?.clientHeight || 0);
-    console.log('height', ulHeight);
-  }, [ulHeight]);
+    setUlHeight(childNodes.current?.clientHeight || 0);
+    console.log('height', childNodesHeight);
+  }, [childNodesHeight]);
   return (
     <>
       <h1 className='text-red-500 border border-yellow-600'>Simple Mind Map</h1>
-      <div className='flex items-center space-x-1'>
-        <ul
-          className='flex flex-col justify-between space-y-2.5'
-          style={{
-            lineHeight: '1em',
-          }}
-          ref={refUl}
-        >
-          {
-            itemList.map((item, index) => (
+      <main className='flex'>
+        <div>
+          <input type='text' placeholder='Input Root' />
+          <ul>
+            <li>
+              <input type='text' placeholder='Input Child' />
+            </li>
+          </ul>
+        </div>
+        <div className='flex items-center space-x-1'>
+          <ul
+            className='flex flex-col justify-between space-y-2.5'
+            style={{
+              lineHeight: '1em',
+            }}
+            ref={childNodes}
+          >
+            {childNodeList.map((item, index) => (
               <li key={index}>{item}</li>
-            ))
-          }
-        </ul>
-        <CurlyBracket sideHeight={ulHeight} />
-        <div>＋なんて</div>
-      </div>
+            ))}
+          </ul>
+          <CurlyBracket sideHeight={childNodesHeight} />
+          <div>＋なんて</div>
+        </div>
+      </main>
     </>
   );
 };
