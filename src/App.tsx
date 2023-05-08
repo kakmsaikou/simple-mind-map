@@ -1,22 +1,36 @@
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import CurlyBracket from './components/CurlyBracket';
 
 const App = () => {
   const [childNodesHeight, setUlHeight] = useState(0);
 
-  const childNodeList = [
+  const [childNodeList, setChildNodeList] = useState([
     '动词普通形',
     'い形容词普通形',
     'な形容词干+な/名词(+助词)',
     '名词(+助词)+なんか',
-  ];
+  ]);
 
   const childNodes = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     setUlHeight(childNodes.current?.clientHeight || 0);
-    console.log('height', childNodesHeight);
   }, [childNodesHeight]);
+
+  const handleChildNodeChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    if (e.target.value === '') return;
+    setChildNodeList(
+      childNodeList.map((item, i) => {
+        if (i === index) {
+          return e.target.value;
+        }
+        return item;
+      })
+    );
+  };
   return (
     <>
       <h1 className='text-red-500 border border-yellow-600'>Simple Mind Map</h1>
@@ -24,9 +38,16 @@ const App = () => {
         <div>
           <input type='text' placeholder='Input Root' />
           <ul>
-            <li>
-              <input type='text' placeholder='Input Child' />
-            </li>
+            {childNodeList.map((_item, index) => (
+              <li key={index}>
+                <input
+                  type='text'
+                  placeholder='Input Child'
+                  value={childNodeList[index]}
+                  onInput={e => handleChildNodeChange(e as ChangeEvent<HTMLInputElement>, index)}
+                />
+              </li>
+            ))}
           </ul>
         </div>
         <div className='flex items-center space-x-1'>
