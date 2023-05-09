@@ -54,12 +54,19 @@ const App = () => {
               </li>
             ))}
             <li>
-              <button onClick={()=>{setChildNodeList([...childNodeList, ''])}}>+</button>
+              <button
+                className='btn btn-primary h-4'
+                onClick={() => {
+                  setChildNodeList([...childNodeList, '']);
+                }}
+              >
+                +
+              </button>
             </li>
           </ul>
         </div>
 
-        <div className='flex items-center space-x-1'>
+        <div className='flex items-center space-x-1 bg-white text-black'>
           <ul
             className='flex flex-col justify-between space-y-2.5'
             style={{
