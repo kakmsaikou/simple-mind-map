@@ -15,7 +15,7 @@ const App = () => {
 
   useEffect(() => {
     setUlHeight(childNodes.current?.clientHeight || 0);
-  }, [childNodesHeight]);
+  }, [childNodeList]);
 
   const handleChildNodeChange = (
     e: ChangeEvent<HTMLInputElement>,
@@ -44,12 +44,21 @@ const App = () => {
                   type='text'
                   placeholder='Input Child'
                   value={childNodeList[index]}
-                  onInput={e => handleChildNodeChange(e as ChangeEvent<HTMLInputElement>, index)}
+                  onInput={e =>
+                    handleChildNodeChange(
+                      e as ChangeEvent<HTMLInputElement>,
+                      index
+                    )
+                  }
                 />
               </li>
             ))}
+            <li>
+              <button onClick={()=>{setChildNodeList([...childNodeList, ''])}}>+</button>
+            </li>
           </ul>
         </div>
+
         <div className='flex items-center space-x-1'>
           <ul
             className='flex flex-col justify-between space-y-2.5'
